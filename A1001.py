@@ -1,18 +1,15 @@
 come_in = input()
-x, y = map(int, come_in.split())
-
-out = x + y
+a, b = map(int, come_in.split())
+# print('{:,}'.format(a + b))
+out = a + b
 sign = '-' if out < 0 else ''
-out = abs(out)
+digits = str(abs(out))
 
-if len(str(out)) <= 3:
-    print(sign+str(out))
-else:
-    print(sign, end='')
-    string = ''
-    while out // 1000:
-        string = ',' + '{:03}'.format(out % 1000) + string
-        out = out // 1000
-    else:
-        string = str(out) + string
-    print(string)
+res = ''
+while digits:
+    digits, last3 = digits[: -3], digits[-3:]
+    res = (last3 + ',' + res) if res else last3
+
+print(sign+res)
+
+
